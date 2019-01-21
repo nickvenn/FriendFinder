@@ -6,8 +6,7 @@ const api = require('./app/routing/apiRoutes');
 //  Connect all our routes to our application
 app.use('/', routes);
 app.use('/survey', routes);
-
-app.use('/api/friends', routes);
+app.use('/api/friends', api);
 
 // Turn on that server!
 app.listen(3000, () => {
