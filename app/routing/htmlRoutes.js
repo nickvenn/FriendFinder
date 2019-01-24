@@ -2,25 +2,20 @@ var express = require("express");
 var path = require("path");
 
 var app = express();
-var friends = require("../data/friends");
+// process.env.PORT
+var PORT = 3000;
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// middleware that is specific to this router
-app.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
-  next()
-})
-// define the home page route
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/home.html"))
-})
-// define the about route
-app.get('/survey', function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/survey.html"))
-})
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "home.html"))
+});
 
-app.get('/api/friends', function (req, res) {
-   return res.json(friends);
-})
+app.get("/survey", function(req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"))
+});
 
-module.exports = app
+app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+});

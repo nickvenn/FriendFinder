@@ -1,47 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-      </head>
 
-    <div class="jumbotron">
-        <h1 class="display-4">Survey Questions!</h1>
-        <p class="lead">This app will let you find people....</p>
-        <hr class="my-4">
-        <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
-      </div>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
 
-      <form>
-        <div class="form-group">
-          <label for="NameInput">NameTextBox</label>
-          <input type="email" class="form-control" id="NameInput" placeholder="Enter name">
-        </div>
-        <div class="form-group">
-          <label for="PhotoInput">PhotoTextBox</label>
-          <input type="url" class="form-control" id="PhotoInput" placeholder="enter link to photo">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+<div class="jumbotron">
+    <h1 class="display-4">Survey Questions!</h1>
+    <p class="lead">This app will let you find people....</p>
+    <hr class="my-4">
+    <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
+</div>
+<div class="row">
+    <div class="col-6 col-md-2"></div>
+    <div class="col-6 col-md-8">
+        <form>
+            <div class="form-group">
+                <label for="NameInput">NameTextBox</label>
+                <input type="email" class="form-control" id="NameInput" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label for="PhotoInput">PhotoTextBox</label>
+                <input type="url" class="form-control" id="PhotoInput" placeholder="enter link to photo">
+            </div>
+            <div class ="questions">
+
+            </div>
+            <div class="form-group">
+                <label for="sel0">Question01:</label>
+                <select class="form-control" id="sel2" placeholder="select an option">
+                    <option>1(Strongly Disagree)</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5(Strongly Agree)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sel1">Question01:</label>
+                <select class="form-control" id="sel2" placeholder="select an option">
+                    <option>1(Strongly Disagree)</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5(Strongly Agree)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sel2">Question01:</label>
+                <select class="form-control" id="sel3" placeholder="select an option">
+                    <option>1(Strongly Disagree)</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5(Strongly Agree)</option>
+                </select>
+            </div>
 
 
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">HTML</a></li>
-          <li><a href="#">CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-        </ul>
-      </div>
+            <br>
+            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+        </form>
 
-    </form>
+        <a href="/api/friends">API table link | </a>
+    </div>
+    <div class="col-6 col-md-2"></div>
+</div>
 
-      <a href="/api/friends">API table link | </a>
-      
-  <script type="text/javascript">
-  </script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#submitButton").on("click", function(event) {
+      event.preventDefault();
+      //arry holding scores
+      var array = [];
+      for(var i =0; i < 3; i++){
+        var input = $("#sel" + i).val();
+        array.push(input);
+      }
+      var newSurvey = {
+        name: $("#NameInput").val().trim(),
+        photo: $("#PhotoInput").val().trim(),
+        scores: [
+            1,
+            3
+        ]
+      };
+
+      // Question: What does this code do??
+      $.post("/api/friends", newSurvey)
+        .then(function(data) {
+          console.log("adding", data);
+          alert("Adding survey...");
+        });
+
+        $("#NameInput").val("");
+        $("#PhotoInput").val("");
+    });
+});
+
+</script>
 </body>
+
 </html>
