@@ -14,4 +14,6 @@ Git Hub link: https://github.com/nickvenn/FriendFinder.git
 - npm install body-parser
 
 ## Screenshots
-
+![Screenshot](home.jpg)
+![Screenshot](survey.jpg)
+![Screenshot](submit.jpg)
