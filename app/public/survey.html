@@ -176,6 +176,36 @@
                                     Responses
                                 </button>
                             </div>
+
+                            <!-- Materialize Modal Structure -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                              
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">your new BFF</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5 id="matchName"></h5>
+                                        <img id="matchPic" src="" alt="No Image" width=250px>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                              
+                                </div>
+                            <!-- <div id="modal1" class="modal">
+                                <div class="modal-content">
+                                    <h4>Meet Your New BFF</h4>
+                                    <h5 id="matchName"></h5>
+                                    <img id="matchPic" src="" alt="No Image" width=250px>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -189,7 +219,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#submitBtn").on("click", function () {
+        $("#submitButton").on("click", function () {
             //form validation
             function validateForm() {
                 var isValid = true;
@@ -209,8 +239,8 @@
             if (validateForm() == true) {
                 //creates a new friend from the values submitted
                 var newFriend = {
-                    name: $('#name').val().trim(),
-                    profilePic: $('#photo').val().trim(),
+                    name: $('#userName').val().trim(),
+                    profilePic: $('#userPhoto').val().trim(),
                     scores: [
                         $('#q1').val(),
                         $('#q2').val(),
@@ -233,7 +263,7 @@
                     $("#matchPic").attr("src", data.profilePic);
                 });
                 // Show the modal with the best match
-                $('.modal').modal();
+                $('#myModal').modal();
                 //clear form after submission
                 $('#name').val("");
                 $('#photo').val("");
