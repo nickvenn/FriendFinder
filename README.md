@@ -18,29 +18,4 @@ Sample:
 
 # Usage
 ## Screenshots
-## Features
 
-# Code
-## QA
-
-[![Build Status](https://qa.nuxeo.org/jenkins/buildStatus/icon?job=addons_nuxeo-sample-project-master)](https://qa.nuxeo.org/jenkins/job/addons_nuxeo-sample-project-master/)
-
-If QA resources are included, sample: https://github.com/nuxeo/nuxeo-sdk-ios/blob/master/README.md
-
-## Content
-
-Description, sub-modules organization...
-
-## Requirements
-
-See [CORG/Compiling Nuxeo from sources](http://doc.nuxeo.com/x/xION)
-
-Sample: https://github.com/nuxeo/nuxeo-distribution
-
-## Limitations
-
-Sample: https://github.com/nuxeo/nuxeo-elasticsearch/blob/master/README.md
-
-## Build
-
-    mvn clean install
