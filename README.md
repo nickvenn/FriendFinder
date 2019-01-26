@@ -1,7 +1,7 @@
 # FriendFinder
 # About / Synopsis
 
-
+This app allows the user to answer 10 questions.  Base upon those responses, a match will be found within a predefined "friend" list.  The friend will be displayed to the user along with an image if one is available.
 
 # Table of contents
 
