@@ -5,7 +5,7 @@
 
 # Table of contents
 
--Git Hub link: https://github.com/nickvenn/FriendFinder.git
+-Git Hub link: https://github.com/nickvenn/FriendFinder.git<br>
 -Heroku link: https://lit-beach-57962.herokuapp.com/
 
 # Installation
