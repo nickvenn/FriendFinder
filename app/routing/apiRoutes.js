@@ -15,45 +15,37 @@ module.exports = function(app) {
 
 	// Add new friend entry
 	app.post('/api/friends', function(req, res) {
-		// Capture the user input object
-		var userInput = req.body;
-		// console.log('userInput = ' + JSON.stringify(userInput));
+		 //grabs the new friend's scores to compare with friends in friendList array
+		 var newFriendScores = req.body.scores;
+		 var scoresArray = [];
 
-		var userResponses = userInput.scores;
-		// console.log('userResponses = ' + userResponses);
-
-		// Compute best friend match
-		var matchName = '';
-		var matchImage = '';
-		var totalDifference = 10000; // Make the initial value big for comparison
-
-		// Examine all existing friends in the list
-		for (var i = 0; i < friends.length; i++) {
-			// console.log('friend = ' + JSON.stringify(friends[i]));
-
-			// Compute differenes for each question
-			var diff = 0;
-			for (var j = 0; j < userResponses.length; j++) {
-				diff += Math.abs(friends[i].scores[j] - userResponses[j]);
-			}
-			// console.log('diff = ' + diff);
-
-			// If lowest difference, record the friend match
-			if (diff < totalDifference) {
-				// console.log('Closest match found = ' + diff);
-				// console.log('Friend name = ' + friends[i].name);
-				// console.log('Friend image = ' + friends[i].photo);
-
-				totalDifference = diff;
-				matchName = friends[i].name;
-				matchImage = friends[i].photo;
-			}
-		}
-
-		// Add new user
-		friends.push(userInput);
-
-		// Send appropriate response
-		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
+		 var bestMatch = 0;
+	 
+		 //runs through all current friends in list
+		 for(var i=0; i<friends.length; i++){
+		   var scoresDiff = 0;
+		   //run through scores to compare friends
+		   for(var j=0; j<newFriendScores.length; j++){
+			 scoresDiff += (Math.abs(parseInt(friends[i].scores[j]) - parseInt(newFriendScores[j])));
+		   }
+	 
+		   //push results into scoresArray
+		   scoresArray.push(scoresDiff);
+		 }
+	 
+		 //after all friends are compared, find best match
+		 for(var i=0; i<scoresArray.length; i++){
+		   if(scoresArray[i] <= scoresArray[bestMatch]){
+			 bestMatch = i;
+		   }
+		 }
+	 
+		 //return bestMatch data
+		 var bff = friends[bestMatch];
+		 console.log(bff);
+		 res.json(bff);
+	 
+		 //pushes new submission into the friendsList array
+		 friends.push(req.body);
 	});
 };
