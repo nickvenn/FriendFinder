@@ -15,7 +15,7 @@ Git Hub link: https://github.com/nickvenn/FriendFinder.git
 
 ## Screenshots
 ## Home Page
-![Screenshot](home.jpg)
+![Screenshot](Home.jpg)
 ## Survey Page
 ![Screenshot](survey.jpg)
 ## Submit Button
